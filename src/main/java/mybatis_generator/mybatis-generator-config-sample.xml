@@ -22,9 +22,9 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://rm-8vb2a3m0uuv11p771zo.mysql.zhangbei.rds.aliyuncs.com:3306/cashlending-vn?characterEncoding=utf-8"
-                        userId="root"
-                        password="JiaoZi123"/>
+                        connectionURL=""
+                        userId=""
+                        password=""/>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
