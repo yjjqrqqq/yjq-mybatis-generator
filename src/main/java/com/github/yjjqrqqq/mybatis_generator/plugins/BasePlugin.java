@@ -3,7 +3,6 @@ package com.github.yjjqrqqq.mybatis_generator.plugins;
 import com.github.yjjqrqqq.mybatis_generator.plugins.utils.PluginTools;
 import com.github.yjjqrqqq.mybatis_generator.plugins.utils.hook.HookAggregator;
 import com.github.yjjqrqqq.mybatis_generator.plugins.utils.BeanUtils;
-import com.github.yjjqrqqq.mybatis_generator.plugins.utils.PluginTools;
 import com.github.yjjqrqqq.mybatis_generator.plugins.utils.enhanced.TemplateCommentGenerator;
 import com.github.yjjqrqqq.mybatis_generator.plugins.utils.hook.ITableConfigurationHook;
 import org.mybatis.generator.api.CommentGenerator;

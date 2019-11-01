@@ -5,11 +5,22 @@
 <generatorConfiguration>
 
     <context id="context" targetRuntime="com.github.yjjqrqqq.mybatis_generator.plugins.Generator$MyIntrospectedTable">
+        <!--SELECT ONE -->
         <plugin type="com.github.yjjqrqqq.mybatis_generator.plugins.SelectOneByExamplePlugin"/>
+        <!-- -->
         <plugin type="com.github.yjjqrqqq.mybatis_generator.plugins.ModelColumnPlugin"/>
         <plugin type="com.github.yjjqrqqq.mybatis_generator.plugins.LimitPlugin"/>
+        <!--批量插入插件 -->
         <plugin type="com.github.yjjqrqqq.mybatis_generator.plugins.BatchInsertPlugin"/>
+        <!--生成基类和子类，子类不编辑，基类负责实体映射 -->
         <plugin type="com.github.yjjqrqqq.mybatis_generator.plugins.BaseClassPlugin">
+            <property name="classMethodSearchString" value="ByExample"/>
+            <property name="classMethodReplaceString" value="ByCriteria"/>
+            <property name="parameterSearchString" value="ByExample"/>
+            <property name="parameterSearchString" value="ByCriteria"/>
+        </plugin>
+        <!--单纯的改名插件 -->
+        <plugin type="com.github.yjjqrqqq.mybatis_generator.plugins.RenamePlugin">
             <property name="classMethodSearchString" value="ByExample"/>
             <property name="classMethodReplaceString" value="ByCriteria"/>
             <property name="parameterSearchString" value="ByExample"/>
