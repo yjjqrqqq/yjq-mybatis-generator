@@ -115,6 +115,11 @@ public class BaseClassPlugin extends PluginAdapter {
         String superClassFullName = topLevelClass.getType().getPackageName() + "." + BASE_SUFFIX.toLowerCase() + "." + topLevelClass.getType().getShortName() + BASE_SUFFIX;
         File file = new File(projectName + "/src/main/java/" + superClassFullName.replaceAll("\\.", "/") + ".java");
         TopLevelClass superClassTemplate = new TopLevelClass(superClassFullName);
+        if (topLevelClass.getJavaDocLines() != null) {
+            for (String javaDocLine : topLevelClass.getJavaDocLines()) {
+                superClassTemplate.addJavaDocLine(javaDocLine);
+            }
+        }
         System.out.println(superClassFullName);
         String fileContent = "";
         if (file.exists()) {
