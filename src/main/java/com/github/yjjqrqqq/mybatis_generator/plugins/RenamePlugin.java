@@ -366,49 +366,4 @@ public class RenamePlugin extends PluginAdapter {
     }
 
 
-    /**
-     * 保留field的注释和注记。 之前有注释就用之前的，注记是累加的
-     *
-     * @param topLevelClass
-     * @param fileContent
-     * @throws IOException
-     * @throws ClassNotFoundException
-     */
-    private static void saveFieldAnnotations(TopLevelClass topLevelClass, String fileContent) throws IOException, ClassNotFoundException {
-        if (StringUtils.isBlank(fileContent)) {
-            return;
-        }
-        String className = topLevelClass.getType().getFullyQualifiedName();
-        Class<?> clz = Class.forName(className);
-        for (Field field : topLevelClass.getFields()) {
-            JavaFileUtil.AnnotationsAndDocs annotationsAndDocs = JavaFileUtil.getFieldComm(fileContent, field.getName());
-            if (annotationsAndDocs.docs.size() != 0) {
-                field.getJavaDocLines().clear();
-                field.getJavaDocLines().addAll(annotationsAndDocs.docs);
-            }
-            List<String> exAnnos = annotationsAndDocs.annotations;
-            if (exAnnos.size() == 0) {
-                continue;
-            }
-            for (String annotation : field.getAnnotations()) {
-                if (annotation.trim().startsWith("@")) {
-                    exAnnos.add(annotation);
-                }
-            }
-            field.getAnnotations().addAll(exAnnos);
-            //import
-            try {
-                java.lang.reflect.Field jField = clz.getDeclaredField(field.getName());
-                for (Annotation annotation : jField.getAnnotations()) {
-                    FullyQualifiedJavaType type = new FullyQualifiedJavaType(annotation.annotationType().getCanonicalName());
-                    if (!topLevelClass.getImportedTypes().contains(type)) {
-                        topLevelClass.getImportedTypes().add(type);
-                    }
-                }
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
 }

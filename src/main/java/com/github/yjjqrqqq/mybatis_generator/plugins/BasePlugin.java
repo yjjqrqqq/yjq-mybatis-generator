@@ -56,7 +56,7 @@ public class BasePlugin extends PluginAdapter {
         } else {
             return true;
         }*/
-       return true;
+        return true;
     }
 
     public void initialized(IntrospectedTable introspectedTable) {

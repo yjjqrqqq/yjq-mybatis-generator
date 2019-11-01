@@ -26,12 +26,18 @@ import java.util.List;
  */
 public class Generator {
     /**
+     * 是否保留注释
+     */
+    public static boolean remainCommits = false;
+
+    /**
      * 生成MyBatis代码
      *
      * @param currentProjectName 当前项目名
      * @param configFile         new File(Thread.currentThread().getContextClassLoader().getResource("mybatis-generator-config.xml").getPath());
      */
     public static void generator(String currentProjectName, File configFile) throws InvalidConfigurationException, IOException, XMLParserException, SQLException, InterruptedException {
+
         BaseClassPlugin.projectName = currentProjectName;
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = false;
@@ -84,6 +90,9 @@ public class Generator {
 
         @Override
         public List<GeneratedJavaFile> getGeneratedJavaFiles() {
+            if (!remainCommits) {
+                return super.getGeneratedJavaFiles();
+            }
             List<GeneratedJavaFile> result = super.getGeneratedJavaFiles();
             for (GeneratedJavaFile generatedJavaFile : result) {
                 if (generatedJavaFile.getCompilationUnit() instanceof TopLevelClass) {
