@@ -31,7 +31,7 @@
         </javaTypeResolver>
 
         <!-- 实体类生成的位置 -->
-        <javaModelGenerator targetPackage="com.jiaozi.cashloan.worker.domain" targetProject="dao/src/main/java">
+        <javaModelGenerator targetPackage="com.yjq.dao.domain" targetProject="dao/src/main/java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
